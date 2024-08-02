@@ -1,0 +1,230 @@
+{
+	"contributes": {
+		"configuration": {
+			"properties": {
+				"veturExtended.searchReferencesGlob": {
+					"type": "string"
+				},
+				"veturExtended.showCompletions": {
+					"description": "Where to show completions in template attributes",
+					"default": "everywhere",
+					"enum": [
+						"disabled",
+						"everywhere",
+						"onlyStart"
+					],
+					"type": "string"
+				},
+				"veturExtended.enableLinks": {
+					"description": "Whether to enable links to files in supported import statements",
+					"default": true,
+					"type": "boolean"
+				},
+				"veturExtended.enableTemplateAttributeDefinitions": {
+					"description": "Whether to enable definitions for template attributes\nMay lead to definition duplicates with Volar configured",
+					"default": "true,",
+					"type": "boolean"
+				},
+				"veturExtended.enableWebpackAliases": {
+					"description": "(component definitions) Try to resolve imports using aliases from root webpack config",
+					"default": true,
+					"type": "boolean"
+				},
+				"veturExtended.enableFindReferencesButton": {
+					"description": "Whether to enable component references button",
+					"default": true,
+					"type": "boolean"
+				},
+				"veturExtended.enableAutoExpandTag": {
+					"description": "Type space after / in <div /> to expand the tag",
+					"default": true,
+					"type": "boolean"
+				},
+				"veturExtended.copyComponentNameCase": {
+					"description": "Copied component name case",
+					"default": "preserve",
+					"enum": [
+						"camelCase",
+						"preserve"
+					],
+					"type": "string"
+				},
+				"veturExtended.enablePiniaStoreRegistrationCodeAction": {
+					"description": "Whether to enable code action for quick store registration in computed field",
+					"default": true,
+					"type": "boolean"
+				},
+				"veturExtended.piniaStorePathRegex": {
+					"description": "Pinia stores import path",
+					"default": ".*?stores\\/.*",
+					"type": "string"
+				},
+				"veturExtended.piniaStoreComputedNameTransform": {
+					"description": "(advanced): Invokes `String.prototype.replace` on the imported store name\nCall signature: `<importedStoreName>.replace(new Regexp(pattern), replacement)`",
+					"default": null,
+					"type": "object",
+					"properties": {
+						"pattern": {
+							"anyOf": [
+								{
+									"type": "object",
+									"properties": {
+										"source": {
+											"type": "string"
+										},
+										"global": {
+											"type": "boolean"
+										},
+										"ignoreCase": {
+											"type": "boolean"
+										},
+										"multiline": {
+											"type": "boolean"
+										},
+										"lastIndex": {
+											"type": "number"
+										},
+										"flags": {
+											"type": "string"
+										},
+										"sticky": {
+											"type": "boolean"
+										},
+										"unicode": {
+											"type": "boolean"
+										},
+										"dotAll": {
+											"type": "boolean"
+										}
+									},
+									"required": [
+										"dotAll",
+										"flags",
+										"global",
+										"ignoreCase",
+										"lastIndex",
+										"multiline",
+										"source",
+										"sticky",
+										"unicode"
+									]
+								},
+								{
+									"type": "string"
+								}
+							]
+						},
+						"replacement": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"pattern",
+						"replacement"
+					]
+				}
+			}
+		},
+		"commands": [
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.findComponentReferences",
+				"title": "Find Component References",
+				"icon": "$(references)"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.generateJsconfigAliases",
+				"title": "Generate Jsconfig Aliases"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.printWebpackJsconfigAliases",
+				"title": "Print Webpack Jsconfig Aliases"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.copyStylesWithClasesFromTemplate",
+				"title": "Copy Styles with Clases From Template"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.focusVuexMapper",
+				"title": "Focus Vuex Mapper"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.expandTag",
+				"title": "Expand Tag"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.copyComponentName",
+				"title": "Copy Component Name"
+			},
+			{
+				"category": "Vetur Extended",
+				"command": "veturExtended.createCssClass",
+				"title": "Create CSS Class"
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"when": "editorLangId == 'vue' && veturExtended.enableFindReferencesButton",
+					"group": "navigation",
+					"command": "veturExtended.findComponentReferences"
+				}
+			]
+		}
+	},
+	"main": "extension-node.js",
+	"browser": "extension-web.js",
+	"qna": false,
+	"engines": {
+		"vscode": "^1.76.0"
+	},
+	"repository": "https://github.com/zardoy/vetur-extended",
+	"name": "vetur-extended",
+	"displayName": "Vetur Extended",
+	"publisher": "zardoy",
+	"version": "0.0.29",
+	"license": "MIT",
+	"web": true,
+	"categories": [
+		"Other",
+		"Programming Languages"
+	],
+	"keywords": [
+		"vue",
+		"vetur",
+		"volar",
+		"vue2"
+	],
+	"activationEvents": [
+		"onLanguage:vue"
+	],
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"proseWrap": "never",
+		"tabWidth": 4,
+		"trailingComma": "all",
+		"arrowParens": "avoid",
+		"printWidth": 150
+	},
+	"__metadata": {
+		"id": "0fb28d48-5340-40c6-a39b-4df82ab62357",
+		"publisherId": "40e8e42a-381f-425a-8a47-d794593bfba8",
+		"publisherDisplayName": "zardoy",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1712676810546,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery"
+	}
+}
